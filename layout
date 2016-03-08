@@ -1,0 +1,126 @@
+;-------Bibliotekos--------;
+#NoEnv			   ;
+#Warn  			   ;
+SendMode Input 		   ;
+SetWorkingDir %A_ScriptDir%; 
+#SingleInstance force	   ;
+;--------------------------;
+
+;---------HotKeys---------;
+; 	! - Alt		  ;
+; 	^ - Control	  ;
+; 	+ - Shift	  ;
+; 	< - Kairys	  ;
+; 	> - Dešinys	  ;
+;-------------------------;
+
+;---Dešinys_CTRL+skaičiai---;
+RCtrl & Ą:: Send {Numpad1}  ;
+RCtrl & Č:: Send {Numpad2}  ;
+RCtrl & Ę:: Send {Numpad3}  ;
+RCtrl & Ė:: Send {Numpad4}  ;
+RCtrl & Į:: Send {Numpad5}  ;
+RCtrl & Š:: Send {Numpad6}  ;
+RCtrl & Ų:: Send {Numpad7}  ;
+RCtrl & Ū:: Send {Numpad8}  ;
+RCtrl & 9:: Send {Numpad9}  ;
+RCtrl & 0:: Send {Numpad0}  ;
+RCtrl & Ž:: Send {NumpadAdd}
+;---------------------------;
+
+;---Dešinys_CTRL+skaičiai---;
+LCtrl & Ą:: Send {Numpad1}  ;
+LCtrl & Č:: Send {Numpad2}  ;
+LCtrl & Ę:: Send {Numpad3}  ;
+LCtrl & Ė:: Send {Numpad4}  ;
+LCtrl & Į:: Send {Numpad5}  ;
+LCtrl & Š:: Send {Numpad6}  ;
+LCtrl & Ų:: Send {Numpad7}  ;
+LCtrl & Ū:: Send {Numpad8}  ;
+LCtrl & 9:: Send {Numpad9}  ;
+LCtrl & 0:: Send {Numpad0}  ;
+LCtrl & Ž:: Send {NumpadAdd}
+;---------------------------;
+
+;--Dešinys_SHIFT+skaičiai--;
+>+Ą:: Send {!}	           ;
+>+Č:: Send {@}	           ;
+>+Ę:: Send {#}	           ;
+>+Ė:: Send {$}	           ;
+>+Į:: SendInput {Asc 0037} ;
+>+Š:: Send {^}	       	   ;
+>+Ų:: Send {&}	           ;
+>+Ū:: Send {*}	           ;
+>+Ž:: Send {=}	           ;
+;--------------------------;
+
+;-------Multimedija---------------------;
+RCtrl & Down::Send {Volume_Down}        ;
+RCtrl & Up::Send {Volume_Up}	        ;
+RCtrl & F8::Send {Volume_Mute}	        ;
+RShift & End::Send {Media_Next}	        ;
+RShift & PgDn::Send {Media_Prev}        ;
+RShift & Home::Send {Media_Play_Pause}  ;
+RShift & Insert:: Send {Volume_Mute}	;
+RShift & ~PgUp::Send {Media_Stop}	;	
+>^RShift:: Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Media Player.lnk
+;---------------------------------------;
+
+;------------Windows_Funkcijos------------------;
+!esc::Send !{F4}			  	;
+!d::Run C:\Users\SuprantiGI\Downloads     	;
+!m::Run C:\Users\SuprantiGI\Music	  	;
+!p::Run C:\Users\SuprantiGI\Pictures	  	;
+!q::Send {Browser_Back}			  	;
+!w::Send {Browser_Forward}		  	;
+!c::Run, explorer.exe /n`,		  
+!^+F12::Run, %comspec% /c shutdown -t 0 -s -f	;
+!^+F11::Run, %comspec% /c shutdown -t 0 -r -f	;
+!^+F10::Run, %comspec% /c rundll32.exe powrprof.dll`,SetSuspendState 0`,1`,0 
+!^+Esc::Run C:\Scripts\shutdown cancel.lnk	;
+!^+m::Run C:\Scripts\MouseOptions.lnk	  	;
+<^!s::						;
+	if WinExist("KeyboardScripts - Notepad") 
+    	WinActivate				;
+	else			  		;--------------------------------;
+	run, %comspec% /c start notepad "C:\Scripts\KeyboardScripts.ahk" "exit"  ;
+	Return				  ;--------------------------------------;
+!s::Run C:\Scripts\			  ;
+!n::					  ;
+	if WinExist("ahk_class Notepad")  ;
+    	WinActivate			  ;
+	else				  ;
+    	Run notepad			  ;
+Lwin & o::				  ;--------------------;
+  If (A_ThisHotkey=A_PriorHotkey && A_TimeSincePriorHotkey<250)
+  Run displayswitch.exe /external	  ;--------------------;
+return ;----------------------------------;
+;------;
+
+
+;-----------------------------------------------------------------------;
+!F1::Run C:\scripts\GUI LeagueOfLegends.ahk                           	;
+!F2::									;
+	MouseClick, left, 324, 727 ; /select to type in chat field    	;
+	SendInput, top							;
+	Send {Enter}							;
+return									;
+!F3::									;
+	MouseClick, left, 324, 727 ; /select to type in chat field	;
+	SendInput, mid							;
+	Send {Enter}							;
+return									;
+;-----------------------------------------------------------------------;
+
+;----------------;---------------------------------;
+<^<+F5:: 	 ;				   ;
+{ 		 ;				   ;		
+  MsgBox Updated ;	     RELOAD BOX            ;
+  Reload	 ;				   ;
+}		 ;				   ;
+;----------------;---------------------------------;
+
+;--------------------------------------------------;
+SC166::Send {Media_Next}	        	   ;
+SC16C::Send {Media_Prev}			   ;
+;--------------------------------------------------;
