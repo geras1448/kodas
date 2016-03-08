@@ -1,0 +1,90 @@
+Gui, Add, Text,, Champion:
+Gui, Add, DropDownList, vChamp, Teemo|Jayce|Kayle|Tryndamere|Pantheon|Mundo|Yasuo|Ryze|Fiora
+Gui, Add, Text,, Role:
+Gui, Add, DropDownList, vLane, top|mid|jungle|adc|support
+Gui, Add, Checkbox, vLockIn, Lock-in champion
+Gui, Add, Button, w123 h20 gMygtukas, Start
+Gui, Show,, It's time to choose.
+Return
+
+GuiClose:
+ExitApp
+
+Mygtukas:
+	
+	if WinExist("PVP.net Client")
+{
+	WinActivate
+	;CoordMode Pixel
+Loop {
+		Sleep, 50
+		if WinExist("League of Legends (TM) Client")
+		{
+			;MsgBox Game has been started for you.
+			GuiControl, Text, Button2, Start
+			break
+		}
+
+		ImageSearch, pX, pY, 0,0, A_ScreenWidth, A_ScreenHeight, C:\scripts\lol\accept_Mygtukas.bmp
+		if ErrorLevel = 0
+			{
+			  MouseClick, left, 550, 450 ;press accept button
+			  
+				
+			  Loop {
+
+				ImageSearch, cX, cY, 0,0, A_ScreenWidth, A_ScreenHeight, C:\scripts\lol\accept_Mygtukas.bmp
+				if ErrorLevel = 0
+					{
+				
+					  MouseClick, left, 550, 450 ;press accept button
+					}
+
+					ImageSearch, rX, rY, 0,0, A_ScreenWidth, A_ScreenHeight, C:\scripts\lol\game_Declined2.bmp
+					if ErrorLevel = 0
+						{
+							MouseClick, left, rX+50, rY+120
+							break
+						}
+
+					ImageSearch, qX, qY, 0,0, A_ScreenWidth, A_ScreenHeight, C:\scripts\lol\champion_select1.bmp
+					if ErrorLevel = 0
+						{
+							Gui,Submit, NoHide	
+							MouseClick, left, 324, 727 ; /select to type in chat field
+							SendInput, %Lane%
+							Send {Enter}
+							MouseClick, left, 900, 131 ; /champion search field
+							Send {Enter}		
+      							SendInput, %Champ%
+							MouseClick, left, 323, 210 ; /select a found champion	
+							Sleep, 50
+							MouseClick, left, 324, 727 ; /select to type in chat field
+							SendInput, %Lane%
+							Send {Enter}
+							GuiControl, Text, Button2, Done.
+
+							MouseClick, left, 450, 200 ; /set cursor aside
+							if (LockIn = 1)
+							{
+			  					Sleep, 100	
+			  					MouseClick, left, 900, 515
+							}
+							GuiControl, Text, Button2, Done.
+							break
+				 
+						}
+				} ;baigiasi loop1
+			} ;baigiasi else
+	
+	}	;baigiasi loop2
+} ;baigiasi --if WinExist("PVP.net Client")
+else
+{
+	MsgBox LeagueOfLegends is not running
+}
+
+Return 
+
+F5:: Reload
+Pause::Pause
